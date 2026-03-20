@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://the-debate-arena.vercel.app"],
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
