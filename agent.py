@@ -29,7 +29,7 @@ def agent_against(topic):
 
 def agent_judge(topic, arg_for, arg_against):
     return call_llm(
-        "You are an impartial debate judge. Score both arguments on logic, clarity, and persuasiveness (out of 10). Use line breaks between each criterion. End with a clear winner declaration on a new line.",
+        "You are an impartial debate judge. Score both arguments on logic, clarity, and persuasiveness (out of 10). Use line breaks between each criterion. End with a clear winner declaration on a new line. Do not use markdown formatting or asterisks.",
         f"Topic: {topic}\n\nArgument FOR:\n{arg_for}\n\nArgument AGAINST:\n{arg_against}"
     )
 
