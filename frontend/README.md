@@ -1,16 +1,52 @@
-# React + Vite
+# The Debate Arena
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A multi-agent AI system where two LLM agents argue opposing sides of any topic, and a judge agent evaluates the debate and declares a winner.
 
-Currently, two official plugins are available:
+**Live demo**: https://the-debate-arena.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How it works
 
-## React Compiler
+Three specialized agents powered by Llama 3.3 (via Groq) are orchestrated in a debate loop:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Agent For** — argues in favor of the topic
+- **Agent Against** — argues against the topic  
+- **Judge Agent** — scores both sides on logic, clarity, and persuasiveness, then declares a winner
 
-## Expanding the ESLint configuration
+Each agent is the same LLM given a different system prompt — demonstrating how role-based prompting enables multi-agent behavior from a single model.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Architecture
+```
+User input (topic)
+       ↓
+  For each round:
+    Agent For → argument
+    Agent Against → argument
+       ↓
+  Judge Agent → scores + verdict
+       ↓
+  React frontend displays results
+```
+
+## Tech stack
+
+- **Backend**: FastAPI, Python
+- **LLM**: Llama 3.3 70B via Groq API
+- **Frontend**: React + Vite
+- **Deployment**: Railway (backend), Vercel (frontend)
+
+## Run locally
+```bash
+# Backend
+git clone https://github.com/Rick7118/The-Debate-Arena.git
+cd The-Debate-Arena
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+echo "GROQ_API_KEY=your_key_here" > .env
+uvicorn main:app --reload
+
+# Frontend
+cd frontend
+npm install
+npm run dev
+```
