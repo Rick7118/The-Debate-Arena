@@ -2,21 +2,22 @@ from agent import agent_for, agent_against, agent_judge
 
 def run_debate(topic, rounds=3):
     debate_log = []
+    last_for = None
+    last_against = None
 
     for round_num in range(1, rounds + 1):
-        print(f"\n--- Round {round_num} ---")
+        arg_for = agent_for(topic, last_against)      # reads opponent's last argument
+        arg_against = agent_against(topic, last_for)  # reads opponent's last argument
 
-        arg_for = agent_for(topic)
-        arg_against = agent_against(topic)
+        debate_log.append({"round": round_num, "for": arg_for, "against": arg_against})
+        last_for = arg_for
+        last_against = arg_against
 
-        print(f"FOR: {arg_for}")
-        print(f"AGAINST: {arg_against}")
+    full_for = "\n".join([f"Round {r['round']}: {r['for']}" for r in debate_log])
+    full_against = "\n".join([f"Round {r['round']}: {r['against']}" for r in debate_log])
+    verdict = agent_judge(topic, full_for, full_against)
 
-        debate_log.append({
-            "round": round_num,
-            "for": arg_for,
-            "against": arg_against
-        })
+    return {"rounds": debate_log, "verdict": verdict}
 
     # Judge evaluates the full debate
     full_for = "\n".join([f"Round {r['round']}: {r['for']}" for r in debate_log])
