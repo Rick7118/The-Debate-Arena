@@ -17,7 +17,7 @@ Each agent is the same LLM given a different system prompt — demonstrating how
 ## Tech stack
 
 - **Backend**: FastAPI, Python
-- **LLM**: Llama 3.3 70B via Groq API
+- **LLM**: mixtral-8x7b-32768
 - **Frontend**: React + Vite
 - **Deployment**: Railway (backend), Vercel (frontend)
 
@@ -34,3 +34,12 @@ clone the repo, create a .env file with GROQ_API_KEY=your_key, then:
     cd frontend
     npm install
     npm run dev
+
+## Known limitations
+
+- Agents do not always directly reference the opponent's specific points — this is a limitation of open-source models defaulting to essay-style responses rather than true rebuttal behavior
+- Cold start on Railway free tier can cause a delay of a few seconds on the first request
+
+## Model
+
+Currently using `mixtral-8x7b-32768` via Groq. Multi-LLM selector (letting users choose the model for each agent) is planned for v2.
