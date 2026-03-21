@@ -42,4 +42,4 @@ clone the repo, create a .env file with GROQ_API_KEY=your_key, then:
 
 ## Model
 
-Currently using `mixtral-8x7b-32768` via Groq. Multi-LLM selector (letting users choose the model for each agent) is planned for v2.
+Currently using `llama-3.3-70b-versatile` via Groq. Multi-LLM selector (letting users choose the model for each agent) is planned for v2.
