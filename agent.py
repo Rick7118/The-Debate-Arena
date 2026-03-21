@@ -7,7 +7,7 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 def call_llm(system_prompt, user_message):
     response = client.chat.completions.create(
-        model="mixtral-8x7b-32768",
+        model="llama-3.3-70b-versatile",
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": user_message}

@@ -10,7 +10,7 @@ export default function App() {
     if (!topic.trim()) return;
     setLoading(true);
     setResult(null);
-    const res = await fetch("https://the-debate-arena-production.up.railway.app/debate", {
+    const res = await fetch("http://127.0.0.1:8000/debate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ topic, rounds }),
