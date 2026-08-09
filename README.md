@@ -1,4 +1,4 @@
-# The Debate Arena(currnetly offline)
+# The Debate Arena(currently offline)
 
 A multi-agent AI system where two LLM agents argue opposing sides of any topic, and a judge agent evaluates the debate and declares a winner.
 
